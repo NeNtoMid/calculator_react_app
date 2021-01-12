@@ -1,5 +1,7 @@
 .btn {
 	border-radius: 0 !important;
+	width: 99px;
+	height: 99px;
 	border: 1px solid #ebf0f1 !important;
 }
 
