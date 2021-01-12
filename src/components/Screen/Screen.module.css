@@ -1,0 +1,7 @@
+.Screen {
+	background: linear-gradient(to right bottom, #2a403e, #1c2325);
+}
+
+.current {
+	color: #f3f8f9;
+}
