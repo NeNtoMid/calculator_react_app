@@ -11,14 +11,39 @@ import Screen from './../../components/Screen/Screen';
 import Calculations from './../../components/Calculations/Calculations';
 
 const Calculator = (props) => {
-	const { calculator } = useCalculator();
+	const {
+		calculator,
+		handleAddNumber,
+		handleSubstractNumber,
+		handleDivideNumber,
+		handleMultiplyNumber,
+		handleAddNumberToScreen,
+		handleDeleteNumberFromScreen,
+		handleClearCalculator,
+		handleSummariseNumbers,
+		handleChangeNumberSign,
+		handleAddDecimalPointToNumber,
+	} = useCalculator();
 	return (
 		<Container component='main' className={classes.Calculator} maxWidth='xs'>
 			<Screen
 				current={calculator.currentNumber}
 				previous={calculator.previousNumber}
+				sum={calculator.sum}
+				sign={calculator.sign}
 			/>
-			<Calculations />
+			<Calculations
+				addNumber={handleAddNumber}
+				substractNumber={handleSubstractNumber}
+				divideNumber={handleDivideNumber}
+				multiplyNumber={handleMultiplyNumber}
+				addNumberToScreen={handleAddNumberToScreen}
+				deleteNumberFromScreen={handleDeleteNumberFromScreen}
+				clearCalculator={handleClearCalculator}
+				summariseNumbers={handleSummariseNumbers}
+				changeNumberSign={handleChangeNumberSign}
+				addDecimalPointToNumber={handleAddDecimalPointToNumber}
+			/>
 		</Container>
 	);
 };

@@ -47,7 +47,7 @@ const Calculations = (props) => {
 			</Grid>
 
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.deleteNumberFromScreen}>
 					<i
 						className='fas fa-backspace fa-3x icon'
 						style={{ padding: '0 18px' }}
@@ -67,7 +67,7 @@ const Calculations = (props) => {
 			</Grid>
 
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.clearCalculator}>
 					<Typography
 						variant='h4'
 						style={{ color: '#9a0036', fontWeight: 'bold' }}
@@ -82,12 +82,17 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Button variant='contained' className='btn' color='primary'>
+				<Button
+					variant='contained'
+					className='btn'
+					color='primary'
+					onClick={props.divideNumber}
+				>
 					<i className='fas fa-divide fa-3x' style={{ color: '#ebf0f1' }}></i>
 				</Button>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(7)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -97,7 +102,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(8)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -107,7 +112,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(9)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -118,13 +123,18 @@ const Calculations = (props) => {
 			</Grid>
 
 			<Grid item>
-				<Button variant='contained' className='btn' color='primary'>
+				<Button
+					variant='contained'
+					className='btn'
+					color='primary'
+					onClick={props.multiplyNumber}
+				>
 					<i className='fas fa-asterisk fa-3x' style={{ color: '#ebf0f1' }}></i>
 				</Button>
 			</Grid>
 
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(4)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -134,7 +144,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(5)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -144,7 +154,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(6)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -154,13 +164,18 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Button variant='contained' className='btn' color='primary'>
+				<Button
+					variant='contained'
+					className='btn'
+					color='primary'
+					onClick={props.substractNumber}
+				>
 					<i className='fas fa-minus fa-3x' style={{ color: '#ebf0f1' }}></i>
 				</Button>
 			</Grid>
 
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(1)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -171,7 +186,7 @@ const Calculations = (props) => {
 			</Grid>
 
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(2)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -181,7 +196,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(3)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -191,12 +206,17 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Button variant='contained' className='btn' color='primary'>
+				<Button
+					variant='contained'
+					className='btn'
+					color='primary'
+					onClick={props.addNumber}
+				>
 					<i className='fas fa-plus fa-3x' style={{ color: '#ebf0f1' }}></i>
 				</Button>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.changeNumberSign}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -206,7 +226,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={() => props.addNumberToScreen(0)}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -216,7 +236,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.addDecimalPointToNumber}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -227,7 +247,12 @@ const Calculations = (props) => {
 			</Grid>
 
 			<Grid item>
-				<Button variant='contained' className='btn' color='primary'>
+				<Button
+					variant='contained'
+					className='btn'
+					color='primary'
+					onClick={props.summariseNumbers}
+				>
 					<i className='fas fa-equals fa-3x' style={{ color: '#ebf0f1' }}></i>
 				</Button>
 			</Grid>
@@ -235,6 +260,16 @@ const Calculations = (props) => {
 	);
 };
 
-Calculations.propTypes = {};
+Calculations.propTypes = {
+	addNumber: PropTypes.func.isRequired,
+	substractNumber: PropTypes.func.isRequired,
+	multiplyNumber: PropTypes.func.isRequired,
+	addNumberToScreen: PropTypes.func.isRequired,
+	deleteNumberFromScreen: PropTypes.func.isRequired,
+	clearCalculator: PropTypes.func.isRequired,
+	summariseNumbers: PropTypes.func.isRequired,
+	changeNumberSign: PropTypes.func.isRequired,
+	addDecimalPointToNumber: PropTypes.func.isRequired,
+};
 
 export default Calculations;
