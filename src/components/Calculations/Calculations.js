@@ -16,7 +16,7 @@ const Calculations = (props) => {
 			}}
 		>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.clearMemory}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -26,7 +26,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.addNumberToMemory}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -36,7 +36,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.substractNumberFromMemory}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -56,7 +56,7 @@ const Calculations = (props) => {
 			</Grid>
 
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.memoryRecall}>
 					<Typography
 						variant='h4'
 						style={{ color: '#263b3a', fontWeight: 'bold' }}
@@ -77,7 +77,7 @@ const Calculations = (props) => {
 				</Block>
 			</Grid>
 			<Grid item>
-				<Block click={() => {}}>
+				<Block click={props.changeNumberToPercent}>
 					<i className='fas fa-percent fa-3x icon'></i>
 				</Block>
 			</Grid>
@@ -270,6 +270,11 @@ Calculations.propTypes = {
 	summariseNumbers: PropTypes.func.isRequired,
 	changeNumberSign: PropTypes.func.isRequired,
 	addDecimalPointToNumber: PropTypes.func.isRequired,
+	changeNumberToPercent: PropTypes.func.isRequired,
+	clearMemory: PropTypes.func.isRequired,
+	addNumberToMemory: PropTypes.func.isRequired,
+	substractNumberFromMemory: PropTypes.func.isRequired,
+	memoryRecall: PropTypes.func.isRequired,
 };
 
 export default Calculations;

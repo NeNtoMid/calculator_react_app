@@ -29,8 +29,8 @@ const Screen = (props) => {
 
 	let sum = props.sum;
 
-	if (`${props.sum}`.length > 13) {
-		const roundedSum = `${sum}`.split('');
+	if (props.sum.length > 13) {
+		const roundedSum = sum.split('');
 
 		roundedSum.length = 13;
 
@@ -39,30 +39,38 @@ const Screen = (props) => {
 
 	let showNumbers = <>&nbsp;</>;
 
-	if ((props.sum !== 0 && props.current !== 0) || props.sign) {
+	if ((+props.sum !== 0 && +props.current !== 0) || props.sign) {
 		showNumbers = (
 			<>
-				{sum} {sign} {props.current !== 0 && props.current}
+				{sum} {sign} {+props.current !== 0 && props.current}
 			</>
+		);
+	}
+
+	let memory = <div style={{ width: 348, height: 31.25 }}></div>;
+
+	if (props.display) {
+		memory = (
+			<Typography variant='h6' style={{ color: '#9CBEC8' }} align='left'>
+				M
+			</Typography>
 		);
 	}
 
 	return (
 		<Grid
 			container
-			style={{ width: 396, height: 100 }}
+			style={{ width: 396, height: 130 }}
 			className={classes.Screen}
 		>
 			<Container>
-				{/* <Typography variant='h4' style={{ color: '#9CBEC8' }} align='right'>
-					{props.previous}
-				</Typography> */}
+				{memory}
 				<Typography variant='h4' style={{ color: '#9CBEC8' }} align='right'>
 					{showNumbers}
 				</Typography>
 
 				<Typography variant='h3' className={classes.current} align='right'>
-					{props.current === 0 ? sum : props.current}
+					{+props.current === 0 ? sum : props.current}
 				</Typography>
 			</Container>
 		</Grid>
@@ -70,8 +78,8 @@ const Screen = (props) => {
 };
 
 Screen.propTypes = {
-	current: PropTypes.number.isRequired,
-	sum: PropTypes.number.isRequired,
+	current: PropTypes.string.isRequired,
+	sum: PropTypes.string.isRequired,
 };
 
 export default Screen;

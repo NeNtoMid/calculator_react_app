@@ -13,6 +13,7 @@ import Calculations from './../../components/Calculations/Calculations';
 const Calculator = (props) => {
 	const {
 		calculator,
+		memory,
 		handleAddNumber,
 		handleSubstractNumber,
 		handleDivideNumber,
@@ -23,6 +24,11 @@ const Calculator = (props) => {
 		handleSummariseNumbers,
 		handleChangeNumberSign,
 		handleAddDecimalPointToNumber,
+		handleChangeNumberToPercent,
+		handleClearMemory,
+		handleAddNumberToMemory,
+		handleSubstractNumberFromMemory,
+		handleMemoryRecall,
 	} = useCalculator();
 	return (
 		<Container component='main' className={classes.Calculator} maxWidth='xs'>
@@ -31,6 +37,8 @@ const Calculator = (props) => {
 				previous={calculator.previousNumber}
 				sum={calculator.sum}
 				sign={calculator.sign}
+				display={memory.display}
+				sumInMemory={memory.sum}
 			/>
 			<Calculations
 				addNumber={handleAddNumber}
@@ -43,6 +51,11 @@ const Calculator = (props) => {
 				summariseNumbers={handleSummariseNumbers}
 				changeNumberSign={handleChangeNumberSign}
 				addDecimalPointToNumber={handleAddDecimalPointToNumber}
+				changeNumberToPercent={handleChangeNumberToPercent}
+				clearMemory={handleClearMemory}
+				addNumberToMemory={handleAddNumberToMemory}
+				substractNumberFromMemory={handleSubstractNumberFromMemory}
+				memoryRecall={handleMemoryRecall}
 			/>
 		</Container>
 	);

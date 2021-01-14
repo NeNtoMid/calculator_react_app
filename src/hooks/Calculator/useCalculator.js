@@ -1,75 +1,16 @@
 import { useState } from 'react';
 
-const proceedMathCalculation = (calculator, mathCalculation) => {
-	let sum;
-
-	let sign = '';
-
-	switch (mathCalculation) {
-		case 'plus':
-			sum = calculator.sum + calculator.currentNumber;
-			sign = 'plus';
-			break;
-		case 'minus':
-			sum = calculator.sum - calculator.currentNumber;
-			sign = 'minus';
-
-			break;
-		case 'multiply':
-			sum = calculator.sum * calculator.currentNumber;
-			sign = 'multiply';
-			break;
-		case 'divide':
-			console.log('case');
-			sum =
-				calculator.currentNumber !== 0
-					? calculator.sum / calculator.currentNumber
-					: calculator.sum;
-
-			sign = 'divide';
-			break;
-		default:
-			sum = 0;
-			sign = '';
-			break;
-	}
-
-	return {
-		sum,
-		sign,
-	};
-};
-
-const calculateSum = (calculator, setCalculator, mathCalculation) => {
-	const { sum, sign } = proceedMathCalculation(calculator, mathCalculation);
-
-	if (calculator.currentNumber !== 0 && calculator.sign) {
-		setCalculator((prevState) => ({
-			...prevState,
-			sum,
-			currentNumber: 0,
-			sign,
-		}));
-	} else if (calculator.sum === 0) {
-		setCalculator((prevState) => ({
-			...prevState,
-			sign,
-			sum: prevState.currentNumber,
-			currentNumber: 0,
-		}));
-	} else {
-		setCalculator((prevState) => ({ ...prevState, sign }));
-	}
-};
+import {
+	calculateSum,
+	proceedMathCalculation,
+} from './../../utils/calculateSum';
 
 const useCalculator = () => {
 	const [calculator, setCalculator] = useState({
-		currentNumber: 0,
-		sum: 0,
+		currentNumber: '',
+		sum: '0',
 		sign: '',
 	});
-
-	console.log(calculator);
 
 	const handleAddNumber = () => {
 		calculateSum(calculator, setCalculator, 'plus');
@@ -94,7 +35,7 @@ const useCalculator = () => {
 			setCalculator({
 				...calculator,
 				sum,
-				currentNumber: 0,
+				currentNumber: '',
 				sign: '',
 			});
 		}
@@ -102,14 +43,14 @@ const useCalculator = () => {
 
 	const handleAddNumberToScreen = (number) => {
 		if (
-			(`${calculator.currentNumber}`.length < 13 &&
+			(calculator.currentNumber.length < 13 &&
 				calculator.sign &&
-				`${calculator.sum}`.length < 13) ||
-			(!calculator.sign && calculator.sum === 0)
+				calculator.sum.length < 13) ||
+			(!calculator.sign && +calculator.sum === 0)
 		) {
 			setCalculator((prevState) => ({
 				...prevState,
-				currentNumber: +`${prevState.currentNumber}${number}`,
+				currentNumber: `${prevState.currentNumber}${number}`,
 			}));
 		}
 	};
@@ -117,15 +58,15 @@ const useCalculator = () => {
 	const handleDeleteNumberFromScreen = () => {
 		setCalculator((prevState) => ({
 			...prevState,
-			currentNumber: +`${prevState.currentNumber}`.substring(
+			currentNumber: prevState.currentNumber.substring(
 				0,
-				`${prevState.currentNumber}`.length - 1
+				prevState.currentNumber.length - 1
 			),
 		}));
 	};
 
 	const handleClearCalculator = () => {
-		setCalculator({ currentNumber: 0, sum: 0, sign: '' });
+		setCalculator({ currentNumber: '', sum: '0', sign: '' });
 	};
 
 	const handleChangeNumberSign = () => {
@@ -136,16 +77,55 @@ const useCalculator = () => {
 	};
 
 	const handleAddDecimalPointToNumber = () => {
-		console.log(calculator.currentNumber);
-		console.log(parseFloat(calculator.currentNumber));
 		setCalculator((prevState) => ({
 			...prevState,
-			currentNumber: parseFloat(`${prevState.currentNumber}.0`),
+			currentNumber: `${prevState.currentNumber}.`,
 		}));
-		console.log('I am here');
+	};
+
+	const handleChangeNumberToPercent = () => {
+		setCalculator((prevState) => ({
+			...prevState,
+			currentNumber: `${+prevState.currentNumber / 100}`,
+		}));
+	};
+
+	const [memory, setMemory] = useState({ sum: '0', display: false });
+
+	const handleClearMemory = () => {
+		setMemory({ sum: '0', display: false });
+	};
+
+	const handleAddNumberToMemory = () => {
+		setMemory((prevState) => ({
+			sum:
+				+calculator.sum !== 0
+					? `${+prevState.sum + +calculator.sum}`
+					: `${+prevState.sum + +calculator.currentNumber}`,
+			display: true,
+		}));
+	};
+
+	const handleSubstractNumberFromMemory = () => {
+		setMemory((prevState) => ({
+			sum:
+				+calculator.sum !== 0
+					? `${+prevState.sum - +calculator.sum}`
+					: `${+prevState.sum - +calculator.currentNumber}`,
+			display: true,
+		}));
+	};
+
+	const handleMemoryRecall = () => {
+		setCalculator((prevState) => ({
+			...prevState,
+			sum: memory.sum,
+			currentNumber: '',
+		}));
 	};
 	return {
 		calculator,
+		memory,
 		handleAddNumber,
 		handleSubstractNumber,
 		handleAddNumberToScreen,
@@ -156,6 +136,11 @@ const useCalculator = () => {
 		handleSummariseNumbers,
 		handleChangeNumberSign,
 		handleAddDecimalPointToNumber,
+		handleChangeNumberToPercent,
+		handleClearMemory,
+		handleAddNumberToMemory,
+		handleSubstractNumberFromMemory,
+		handleMemoryRecall,
 	};
 };
 
