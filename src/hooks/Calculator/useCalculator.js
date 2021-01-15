@@ -86,6 +86,7 @@ const useCalculator = () => {
 	const handleChangeNumberToPercent = () => {
 		setCalculator((prevState) => ({
 			...prevState,
+			sum: +prevState.currentNumber ? prevState.sum : `${+prevState.sum / 100}`,
 			currentNumber: `${+prevState.currentNumber / 100}`,
 		}));
 	};

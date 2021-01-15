@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -277,4 +277,4 @@ Calculations.propTypes = {
 	memoryRecall: PropTypes.func.isRequired,
 };
 
-export default Calculations;
+export default memo(Calculations, () => true);
