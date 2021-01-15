@@ -1,4 +1,4 @@
-# App in development status  https://calculator-react-app-9f9a6.web.app/
+# Simple calculator app with basic calculations written in ReactJs  https://calculator-react-app-9f9a6.web.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
